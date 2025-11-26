@@ -6,10 +6,22 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.commands.DriveWithJoystick;
+import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.PS4Controller;
+
 
 public class RobotContainer {
+
+  private final DriveTrain driveTrain = new DriveTrain();
+  private final PS4Controller ps4Controller = new PS4Controller(0);
+  private final DriveWithJoystick driveWithJoystickCmd = new DriveWithJoystick(driveTrain, ps4Controller);
+
+
   public RobotContainer() {
     configureBindings();
+
+    driveTrain.setDefaultCommand(driveWithJoystickCmd);
   }
 
   private void configureBindings() {}
