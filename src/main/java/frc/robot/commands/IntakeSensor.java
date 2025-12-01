@@ -11,27 +11,30 @@ import frc.robot.subsystems.Intake;
 public class IntakeSensor extends Command {
 
   private final Intake intake;
+
   /** Creates a new IntakeSensor. */
   public IntakeSensor(Intake intake) {
-  
-    this.intake= intake;
+
+    this.intake = intake;
     addRequirements(intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-  if (intake.getSensor()){
-    intake.runIntake(0.5);
+    if (!intake.getSensor()) {
+      intake.runIntake(0.5);
 
-  } else {intake.stopMotor();
-  }
+    } else {
+      intake.stopMotor();
+    }
   }
 
   // Called once the command ends or is interrupted.
